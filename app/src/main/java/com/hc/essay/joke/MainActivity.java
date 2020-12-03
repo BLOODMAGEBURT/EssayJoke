@@ -6,20 +6,21 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hc.essay.baselibrary.ioc.ViewById;
+import com.hc.essay.baselibrary.ioc.ViewUtils;
+
 
 public class MainActivity extends AppCompatActivity {
 
-
-    //    @Bind(R.id.tv_test)
+    @ViewById(R.id.tv_test)
     TextView tv_test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        ButterKnife.bind(this);
-        tv_test.setText("are you ok ???");
+        ViewUtils.inject(this);
+        tv_test.setText("are you ok ???, yeah of course coffee");
 
     }
 
