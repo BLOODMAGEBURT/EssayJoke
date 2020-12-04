@@ -5,6 +5,8 @@ import android.view.View;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class ViewUtils {
     // 注入Activity
@@ -30,6 +32,14 @@ public class ViewUtils {
      * @param object 反射需要执行的类
      */
     public static void inject(ViewFinder finder, Object object) {
+
+        injectField(finder, object);
+        injectEvent(finder, object);
+    }
+
+
+    // 注入变量
+    private static void injectField(ViewFinder finder, Object object) {
         //1. 通过反射获取field
         Class<?> clz = object.getClass();
         Field[] declaredFields = clz.getDeclaredFields();
@@ -56,7 +66,52 @@ public class ViewUtils {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
+        }
+    }
 
+    // 注入事件
+    public static void injectEvent(ViewFinder finder, Object object) {
+        // 1. 获取对象的所有方法
+        Class<?> aClass = object.getClass();
+        Method[] methods = aClass.getDeclaredMethods();
+        for (Method method : methods) {
+            // 2. 获取方法中的注解以及注解的值
+            OnClick annotation = method.getAnnotation(OnClick.class);
+            if (annotation == null) {
+                continue;
+            }
+            int[] values = annotation.value();
+            for (int value : values) {
+                // 3. 找到view
+                View viewById = finder.findViewById(value);
+                // 4. setOnClickListener, 会回调onClick方法
+                viewById.setOnClickListener(new MyOnClickListener(method, object));
+            }
+        }
+    }
+
+    public static class MyOnClickListener implements View.OnClickListener {
+        private final Method method;
+        private final Object object;
+
+        public MyOnClickListener(Method method, Object object) {
+            this.method = method;
+            this.object = object;
+        }
+
+        @Override
+        public void onClick(View v) {
+            // 回调onClick方法
+
+            // 5. 回调时反射执行方法
+            try {
+                method.setAccessible(true);
+                method.invoke(object, v);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
