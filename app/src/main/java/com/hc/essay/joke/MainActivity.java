@@ -29,13 +29,6 @@ public class MainActivity extends AppCompatActivity {
         tv_test.setText("are you ok man ?");
         hello.setText("Yo");
 
-
-        getInfoFromNet();
-    }
-
-    @CheckNet
-    private void getInfoFromNet() {
-        Toast.makeText(this, "联网获取数据", Toast.LENGTH_LONG).show();
     }
 
     @OnClick({R.id.tv_test, R.id.hello})
