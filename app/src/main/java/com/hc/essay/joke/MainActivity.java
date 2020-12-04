@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hc.essay.baselibrary.ioc.CheckNet;
 import com.hc.essay.baselibrary.ioc.OnClick;
 import com.hc.essay.baselibrary.ioc.ViewById;
 import com.hc.essay.baselibrary.ioc.ViewUtils;
@@ -28,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
         tv_test.setText("are you ok man ?");
         hello.setText("Yo");
 
+
+        getInfoFromNet();
+    }
+
+    @CheckNet
+    private void getInfoFromNet() {
+        Toast.makeText(this, "联网获取数据", Toast.LENGTH_LONG).show();
     }
 
     @OnClick({R.id.tv_test, R.id.hello})
@@ -39,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.hello:
                 Toast.makeText(this, "Yo man", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 }

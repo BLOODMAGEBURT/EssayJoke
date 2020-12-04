@@ -9,6 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class ViewUtils {
+
     // 注入Activity
     public static void inject(Activity activity) {
         inject(new ViewFinder(activity), activity);
@@ -76,16 +77,15 @@ public class ViewUtils {
         Method[] methods = aClass.getDeclaredMethods();
         for (Method method : methods) {
             // 2. 获取方法中的注解以及注解的值
-            OnClick annotation = method.getAnnotation(OnClick.class);
-            if (annotation == null) {
-                continue;
-            }
-            int[] values = annotation.value();
-            for (int value : values) {
-                // 3. 找到view
-                View viewById = finder.findViewById(value);
-                // 4. setOnClickListener, 会回调onClick方法
-                viewById.setOnClickListener(new MyOnClickListener(method, object));
+            OnClick onClick = method.getAnnotation(OnClick.class);
+            if (onClick != null) {
+                int[] values = onClick.value();
+                for (int value : values) {
+                    // 3. 找到view
+                    View viewById = finder.findViewById(value);
+                    // 4. setOnClickListener, 会回调onClick方法
+                    viewById.setOnClickListener(new MyOnClickListener(method, object));
+                }
             }
         }
     }
@@ -114,4 +114,6 @@ public class ViewUtils {
             }
         }
     }
+
+
 }
