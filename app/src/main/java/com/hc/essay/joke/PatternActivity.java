@@ -23,7 +23,8 @@ public class PatternActivity extends AppCompatActivity {
     }
 
     private void infoAsyncTask() {
-
+        MyAsyncTask myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute("12");
     }
 
     private void infoView() {
@@ -40,11 +41,26 @@ public class PatternActivity extends AppCompatActivity {
      */
     public static class MyAsyncTask extends AsyncTask<String, Integer, String> {
 
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
         @Override
         protected String doInBackground(String... strings) {
 
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+
         }
     }
 
