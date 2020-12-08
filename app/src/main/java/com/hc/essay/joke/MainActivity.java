@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         ViewUtils.inject(this);
         tv_test.setText("are you ok man ?");
         hello.setText("Yo");
-
     }
 
     @OnClick({R.id.tv_test, R.id.hello})
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.hello:
                 Toast.makeText(this, "Yo man", Toast.LENGTH_SHORT).show();
+
         }
     }
 
