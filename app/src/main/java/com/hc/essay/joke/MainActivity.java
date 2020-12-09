@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.hello:
                 Toast.makeText(this, "Yo man", Toast.LENGTH_SHORT).show();
-
         }
     }
 

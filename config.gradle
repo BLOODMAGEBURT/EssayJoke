@@ -1,0 +1,33 @@
+ext {
+    /**
+     * Android 基本配置项
+     */
+    android = [
+            // 编译 SDK 版本
+            compileSdkVersion: 30,
+            // Gradle 编译项目工具版本
+            buildToolsVersion: "30.0.2",
+            // 最低兼容 Android 版本
+            minSdkVersion    : 23,
+            // 最高兼容 Android 版本
+            targetSdkVersion : 30,
+            // 当前版本编号
+            versionCode      : 1,
+            // 当前版本信息
+            versionName      : "1.0",
+            // java版本
+            JavaVersion      : JavaVersion.VERSION_1_8
+    ]
+
+    /**
+     * 基础依赖版本 - 类似 support 库等
+     */
+    dependVersion = [
+            appcompat       : "1.2.0",
+            constraintlayout: "2.0.4",
+            material        : "1.2.1",
+            junit           : "4.13.1",
+            testJunit       : "1.1.2",
+            espressoCore    : "3.3.0"
+    ]
+}

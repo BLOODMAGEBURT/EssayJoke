@@ -3,14 +3,16 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    def androidRoot = rootProject.ext.android
+
+    compileSdkVersion androidRoot.compileSdkVersion
+    buildToolsVersion androidRoot.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion androidRoot.minSdkVersion
+        targetSdkVersion androidRoot.targetSdkVersion
+        versionCode androidRoot.versionCode
+        versionName androidRoot.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -23,17 +25,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility androidRoot.JavaVersion
+        targetCompatibility androidRoot.JavaVersion
     }
 }
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    def dependRoot = rootProject.ext.dependVersion
+
+    implementation 'androidx.appcompat:appcompat:' + dependRoot.appcompat
+    implementation 'com.google.android.material:material:' + dependRoot.material
     implementation project(path: ':BaseLibrary')
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'junit:junit:' + dependRoot.junit
+    androidTestImplementation 'androidx.test.ext:junit:' + dependRoot.testJunit
+    androidTestImplementation 'androidx.test.espresso:espresso-core:' + dependRoot.espressoCore
 }
