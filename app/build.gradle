@@ -36,7 +36,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:' + dependRoot.appcompat
     implementation 'com.google.android.material:material:' + dependRoot.material
     implementation 'androidx.constraintlayout:constraintlayout:' + dependRoot.constraintlayout
-    implementation project(path: ':BaseLibrary')
+//    implementation project(path: ':BaseLibrary')  //使用api继承
     implementation project(path: ':framelibrary')
     testImplementation 'junit:junit:' + dependRoot.junit
     androidTestImplementation 'androidx.test.ext:junit:' + dependRoot.testJunit
