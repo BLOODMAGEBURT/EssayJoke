@@ -16,6 +16,7 @@ import com.hc.essay.baselibrary.ioc.ViewById;
 import com.hc.essay.baselibrary.ioc.ViewUtils;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 
 import dalvik.system.BaseDexClassLoader;
@@ -51,13 +52,16 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             fixDexBug();
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
+            Toast.makeText(this,"修复成功",Toast.LENGTH_SHORT).show();
+        } catch (NoSuchFieldException | IllegalAccessException | IOException e) {
+            e.printStackTrace(); 
+            Toast.makeText(this,"修复失败",Toast.LENGTH_SHORT).show();
+
         }
     }
 
     // 通过dex修复bug
-    private void fixDexBug() throws NoSuchFieldException, IllegalAccessException {
+    private void fixDexBug() throws NoSuchFieldException, IllegalAccessException, IOException {
 
         File fixFile = new File(Environment.getExternalStorageDirectory(), "fix.dex");
         if (fixFile.exists()) {
