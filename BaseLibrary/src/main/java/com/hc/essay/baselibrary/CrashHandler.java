@@ -37,7 +37,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 //        handleExceptionByMyself(t, e);
         Log.d("aaa", "出异常了");
         //系统默认处理异常
-//        mDefaultExceptionHandler.uncaughtException(t, e);
+        mDefaultExceptionHandler.uncaughtException(t, e);
     }
 
 
