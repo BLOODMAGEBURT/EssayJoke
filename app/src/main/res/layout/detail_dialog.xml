@@ -6,9 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".TestActivity">
+
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/weibo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hello TestActivity"/>
+        android:text="微博" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/weixin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="微信" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
