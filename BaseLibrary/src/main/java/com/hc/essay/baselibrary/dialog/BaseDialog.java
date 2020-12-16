@@ -62,6 +62,12 @@ public class BaseDialog extends Dialog {
             return this;
         }
 
+        // 设置点击阴影能否取消
+        public Builer setCancelable(boolean cancelable) {
+            P.mCancelable = cancelable;
+            return this;
+        }
+
 
         private BaseDialog create() {
             // Context has already been wrapped with the appropriate theme.

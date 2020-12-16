@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 
 class DialogController {
@@ -70,13 +71,19 @@ class DialogController {
                 throw new IllegalArgumentException("请调用setContentView(view or layoutId)");
             }
 
+
             mAlert.getBaseDialog().setContentView(dialogViewHelper.getContentView());
 
             // 2.设置文本
+            for (int i = 0; i < textArray.size(); i++) {
+                dialogViewHelper.setText(textArray.keyAt(i),textArray.valueAt(i));
+            }
 
 
             // 3.设置点击事件
-
+            for (int i = 0; i < listenerArray.size(); i++) {
+                dialogViewHelper.setListener(listenerArray.keyAt(i),listenerArray.valueAt(i));
+            }
 
             // 4.配置自定义的效果  全屏 底部弹出  默认动画
         }
