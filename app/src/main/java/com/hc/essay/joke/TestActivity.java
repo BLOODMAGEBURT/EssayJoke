@@ -57,6 +57,9 @@ public class TestActivity extends BaseSkinActivity {
                         Toast.makeText(TestActivity.this, "weixin弹弹弹", Toast.LENGTH_SHORT).show();
                     }
                 })
+                .setFromBottom(true)
+                .fullWidth()
+//                .setDefaultAnimation()
                 .show();
     }
 }

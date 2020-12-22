@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.DialogCompat;
@@ -68,6 +70,39 @@ public class BaseDialog extends Dialog {
             return this;
         }
 
+        // 设置是否全屏
+        public Builer fullWidth() {
+            P.mWidth = ViewGroup.LayoutParams.MATCH_PARENT;
+            return this;
+        }
+
+        // 设置是否底部弹出
+        public Builer setFromBottom(boolean isAnim) {
+            if (isAnim) {
+                P.mAnimations = R.style.dialog_from_bottom_anim;
+            }
+            P.mGravity = Gravity.BOTTOM;
+            return this;
+        }
+
+        // 设置是否有动画
+        public Builer setDefaultAnimation() {
+            P.mAnimations = R.anim.dialog_scale_anim;
+            return this;
+        }
+
+        // 设置动画
+        public Builer setAnimation(int animation) {
+            P.mAnimations = animation;
+            return this;
+        }
+
+        // 设置宽高
+        public Builer setWidthAndHeight(int width, int height) {
+            P.mWidth = width;
+            P.mHeight = height;
+            return this;
+        }
 
         private BaseDialog create() {
             // Context has already been wrapped with the appropriate theme.

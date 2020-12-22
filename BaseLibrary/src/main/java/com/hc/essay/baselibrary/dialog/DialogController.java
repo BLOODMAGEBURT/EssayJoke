@@ -3,8 +3,11 @@ package com.hc.essay.baselibrary.dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.SparseArray;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 
@@ -45,6 +48,17 @@ class DialogController {
         public SparseArray<CharSequence> textArray = new SparseArray<>();
         // 存放多个View的点击事件
         public SparseArray<View.OnClickListener> listenerArray = new SparseArray<>();
+        // 是否底部弹出
+        public boolean mFromBottom;
+        // 是否默认动画
+        public boolean mIsAnim;
+        // 宽度
+        public int mWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
+        // 高度
+        public int mHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+        // 位置
+        public int mGravity = Gravity.CENTER;
+        public int mAnimations = 0;
 
         public DialogParams(Context context, int themeResId) {
 
@@ -76,16 +90,28 @@ class DialogController {
 
             // 2.设置文本
             for (int i = 0; i < textArray.size(); i++) {
-                dialogViewHelper.setText(textArray.keyAt(i),textArray.valueAt(i));
+                dialogViewHelper.setText(textArray.keyAt(i), textArray.valueAt(i));
             }
 
 
             // 3.设置点击事件
             for (int i = 0; i < listenerArray.size(); i++) {
-                dialogViewHelper.setListener(listenerArray.keyAt(i),listenerArray.valueAt(i));
+                dialogViewHelper.setListener(listenerArray.keyAt(i), listenerArray.valueAt(i));
             }
 
             // 4.配置自定义的效果  全屏 底部弹出  默认动画
+
+            Window window = mAlert.getWindow();
+
+            window.setGravity(mGravity);
+            if (mAnimations != 0) {
+                window.setWindowAnimations(mAnimations);
+            }
+
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.width = mWidth;
+            params.height = mHeight;
+            window.setAttributes(params);
         }
     }
 }

@@ -13,4 +13,10 @@
         <!--模糊-->
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <style name="dialog_from_bottom_anim">
+        <item name="android:windowEnterAnimation">@anim/dialog_from_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_from_bottom_exit</item>
+
+    </style>
 </resources>
