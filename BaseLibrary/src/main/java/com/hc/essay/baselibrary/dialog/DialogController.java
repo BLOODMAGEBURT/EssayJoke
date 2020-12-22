@@ -103,12 +103,12 @@ class DialogController {
 
             Window window = mAlert.getWindow();
 
-            window.setGravity(mGravity);
             if (mAnimations != 0) {
                 window.setWindowAnimations(mAnimations);
             }
 
             WindowManager.LayoutParams params = window.getAttributes();
+            params.gravity = mGravity;
             params.width = mWidth;
             params.height = mHeight;
             window.setAttributes(params);

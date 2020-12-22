@@ -8,7 +8,7 @@ ext {
             // Gradle 编译项目工具版本
             buildToolsVersion: "30.0.2",
             // 最低兼容 Android 版本
-            minSdkVersion    : 23,
+            minSdkVersion    : 22,
             // 最高兼容 Android 版本
             targetSdkVersion : 30,
             // 当前版本编号
